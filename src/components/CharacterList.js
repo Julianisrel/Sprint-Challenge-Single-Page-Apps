@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import CharacterCard from './CharacterCard';
-export default function CharacterList() {
+import { ListGroup, ListGroupItem } from 'reactstrap';
   // TODO: Add useState to track data from useEffect
   
   
@@ -19,10 +19,22 @@ export default function CharacterList() {
       setCharList(res.data.results)
     })
   }, []);
+  const renderData = () => {
+    return charList.map(char => {
+        return (
+          <div key = {char.id} >
+            <ListGroupItem>{char.name}</ListGroupItem>
+             <ListGroupItem>{char.id}</ListGroupItem> 
+          </div>
+        )
 
+    })
+}
   return (
+
+    
     <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
+      {renderData()}
     </section>
   );
 }
