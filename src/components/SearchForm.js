@@ -1,10 +1,32 @@
 import React, { useState } from "react";
-
-export default function SearchForm() {
- 
+// The search form I called handleChange whenever text was inputted and 
+// used that function to update the name inputted
+​
+const SearchForm = ({ handleSubmit }) => {
+  const [ name, setName ] = useState('')
+  const handleChange = (e) => {
+    console.log("e: ", e);
+    setName(e.target.value)
+  }
+​
   return (
-    <section className="search-form">
-     // Add a search form here
-    </section>
+    <form onSubmit={(e) => handleSubmit(name, e)}>
+      <label>
+        Name:
+        <input onChange={handleChange} type="text" name="name" />
+      </label>
+      <input type="submit" value="Submit" />
+  </form>
   );
 }
+​
+export default SearchForm;
+
+
+
+
+
+
+
+
+
